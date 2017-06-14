@@ -1,5 +1,5 @@
-﻿using ParseTest.Lexing;
-using ParseTest.Lexing.Tokens;
+﻿using LangParser.Lexing;
+using LangParser.Lexing.Tokens;
 using System;
 
 namespace ParseTest
@@ -8,7 +8,17 @@ namespace ParseTest
 	{
 		static void Main(string[] args)
 		{
-			string code = "if(5+8){x=9;}else{9*(5);}";
+			string code = @"
+void Test(int test)
+{
+	test = 5;
+
+	if(test < 4f)
+		return test;
+	else
+		return 4.56f;
+}
+";
 			Lexer lexer = new Lexer(code);
 
 			foreach(Token t in lexer.Lex())
