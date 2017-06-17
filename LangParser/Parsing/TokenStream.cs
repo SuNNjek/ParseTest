@@ -41,8 +41,10 @@ namespace LangParser.Parsing
 			if (IsMatch<TToken>())
 				return (TToken)Consume();
 
-			throw new InvalidSyntaxException($"Expected {typeof(TToken).Name} but got {Current.GetType().Name}", null);
+			throw new InvalidSyntaxException($"Expected {typeof(TToken).Name} but got {Current.GetType().Name}", Current.Position, null);
 		}
+
+		public Token TakeIfMatch<TToken>() where TToken : Token => IsMatch<TToken>() ? Take<TToken>() : null;
 
 		public bool Alternative(Func<Ast> action)
 		{

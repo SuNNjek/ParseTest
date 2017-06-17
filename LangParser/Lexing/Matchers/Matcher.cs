@@ -8,9 +8,11 @@ namespace LangParser.Lexing.Matchers
 
 		public bool IsMatch(Tokenizer tokenizer, out Token token)
 		{
+			int position = tokenizer.Index;
+
 			if (tokenizer.EOS)
 			{
-				token = new EndOfFileToken();
+				token = new EndOfFileToken { Position = position };
 				return true;
 			}
 
@@ -18,10 +20,11 @@ namespace LangParser.Lexing.Matchers
 			{
 				token = GetToken(tokenizer);
 
-				if (token == null)
-					snapshot.Rollback();
-				else
+				if(token != null)
+				{
+					token.Position = position;
 					snapshot.Commit();
+				}
 
 				return token != null;
 			}

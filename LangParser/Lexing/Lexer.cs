@@ -62,11 +62,15 @@ namespace LangParser.Lexing
 				new SpecialMatcher<GreaterThanToken>(">", true),
 				new SpecialMatcher<NotEqualToken>("!=", true),
 				new SpecialMatcher<NegationToken>("!", true),
+				new SpecialMatcher<AndToken>("&&", true),
+				new SpecialMatcher<OrToken>("||", true),
+				new SpecialMatcher<XorToken>("^", true),
 				new SpecialMatcher<PlusToken>("+", true),
 				new SpecialMatcher<MinusToken>("-", true),
 				new SpecialMatcher<MultiplyToken>("*", true),
 				new SpecialMatcher<DivisionToken>("/", true),
 				new SpecialMatcher<AssignmentToken>("=", true),
+				new SpecialMatcher<CommaToken>(",", true),
 				new SpecialMatcher<SemicolonToken>(";", true)
 			};
 
@@ -84,6 +88,7 @@ namespace LangParser.Lexing
 			matchers.Add(new SpecialMatcher<IntToken>("int", false, delimiters));
 			matchers.Add(new SpecialMatcher<FloatToken>("float", false, delimiters));
 			matchers.Add(new SpecialMatcher<BoolToken>("bool", false, delimiters));
+			matchers.Add(new SpecialMatcher<StringKeywordToken>("string", false, delimiters));
 			matchers.Add(new SpecialMatcher<ObjectToken>("object", false, delimiters));
 			matchers.Add(new SpecialMatcher<ByteToken>("byte", false, delimiters));
 			matchers.Add(new SpecialMatcher<ReturnToken>("return", false, delimiters));

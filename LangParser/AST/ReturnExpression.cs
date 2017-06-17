@@ -7,7 +7,7 @@ namespace LangParser.AST
 	{
 		public Ast Expression { get; set; }
 
-		public ReturnExpression(Token token, Ast expr) : base(token)
+		public ReturnExpression(ReturnToken token, Ast expr) : base(token)
 		{
 			Expression = expr;
 		}

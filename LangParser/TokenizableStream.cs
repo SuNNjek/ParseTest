@@ -8,14 +8,12 @@ namespace LangParser
 		private List<T> _items;
 		private Stack<int> _snapshotIndexes;
 
-		protected int Index { get; set; }
+		public int Index { get; protected set; }
 		public virtual T Current => IsEOS(0) ? null : _items[Index];
 		public bool EOS => IsEOS(0);
 
 		protected TokenizableStream(Func<IEnumerable<T>> extractor)
 		{
-			Index = 0;
-
 			_items = new List<T>(extractor());
 			_snapshotIndexes = new Stack<int>();
 		}

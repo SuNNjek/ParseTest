@@ -31,7 +31,7 @@ namespace LangParser.Lexing.Matchers
 								builder.Append("\t");
 								break;
 							default:
-								throw new InvalidSymbolException($"Invalid escape sequence: \\{tokenizer.Current}", null);
+								throw new InvalidSymbolException($"Invalid escape sequence: \\{tokenizer.Current}", tokenizer.Index, null);
 						}
 
 						tokenizer.Consume();
@@ -45,7 +45,7 @@ namespace LangParser.Lexing.Matchers
 				if (tokenizer.Current == "\"")
 					tokenizer.Consume();
 				else
-					throw new InvalidSymbolException("Unexpected end of file, expected string delimiter", null);
+					throw new InvalidSymbolException("Unexpected end of file, expected string delimiter", tokenizer.Index, null);
 			}
 
 			if (builder.Length > 0)

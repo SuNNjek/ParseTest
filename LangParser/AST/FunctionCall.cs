@@ -9,7 +9,7 @@ namespace LangParser.AST
 		public IdentifierToken Name { get; set; }
 		public IList<Ast> Arguments { get; set; }
 
-		public FunctionCall(Token token, IdentifierToken name, IList<Ast> args) : base(token)
+		public FunctionCall(IdentifierToken name, IList<Ast> args) : base(name)
 		{
 			Name = name;
 			Arguments = args;
