@@ -20,7 +20,7 @@ statement	= expression_statement
 			| block_statement
 			| if_statement
 			| loop_statement
-			| return_statement.
+			| jump_statement.
 
 expression_statement = [ expression ] ";".
 block_statement = "{" { statement } "}".
