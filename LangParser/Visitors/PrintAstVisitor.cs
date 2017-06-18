@@ -44,14 +44,17 @@ namespace LangParser.Visitors
 
 			WriteIndentantion(true).AppendLine("Predicate:");
 			Start(visitable.Predicate);
+			_indentLevel--;
 
-			WriteIndentantion(false).AppendLine("Body:");
+			WriteIndentantion(true).AppendLine("Body:");
 			Start(visitable.Body);
+			_indentLevel--;
 
 			if(visitable.Else != null)
 			{
-				WriteIndentantion(false).AppendLine("Else:");
+				WriteIndentantion(true).AppendLine("Else:");
 				Start(visitable.Else);
+				_indentLevel--;
 			}
 
 			_indentLevel -= 2;
@@ -76,25 +79,29 @@ namespace LangParser.Visitors
 		{
 			WriteIndentantion(true).AppendLine("For-loop");
 
-			WriteIndentantion(true).AppendLine("Initialization:");
 			if (visitable.Initialization != null)
+			{
+				WriteIndentantion(true).AppendLine("Initialization:");
 				Start(visitable.Initialization);
-			_indentLevel--;
+				_indentLevel--;
+			}
 
-			WriteIndentantion(true).AppendLine("Condition:");
 			if (visitable.Condition != null)
+			{
+				WriteIndentantion(true).AppendLine("Condition:");
 				Start(visitable.Condition);
-			_indentLevel--;
+				_indentLevel--;
+			}
 
-			WriteIndentantion(true).AppendLine("Afterthought:");
 			if (visitable.Afterthought != null)
+			{
+				WriteIndentantion(true).AppendLine("Afterthought:");
 				Start(visitable.Afterthought);
-			_indentLevel--;
+				_indentLevel--;
+			}
 
 			WriteIndentantion(true).AppendLine("Body:");
 			Start(visitable.Body);
-			_indentLevel--;
-
 			_indentLevel--;
 		}
 
@@ -126,7 +133,7 @@ namespace LangParser.Visitors
 			WriteIndentantion(true).AppendLine("Body:");
 			Start(visitable.Body);
 
-			_indentLevel -= 2;
+			_indentLevel--;
 		}
 
 		public override void Visit(Literal visitable)
@@ -189,6 +196,18 @@ namespace LangParser.Visitors
 			Start(visitable.Body);
 			_indentLevel--;
 
+			_indentLevel--;
+		}
+
+		public override void Visit(Continue visitable)
+		{
+			WriteIndentantion(true).AppendLine("Continue");
+			_indentLevel--;
+		}
+
+		public override void Visit(Break visitable)
+		{
+			WriteIndentantion(true).AppendLine("Break");
 			_indentLevel--;
 		}
 

@@ -1,9 +1,7 @@
-﻿using LangParser.Lexing;
-using LangParser.Lexing.Tokens;
-using System;
-using LangParser.Parsing;
+﻿using System;
 using LangParser.AST;
-using System.Collections.Generic;
+using LangParser.Lexing;
+using LangParser.Parsing;
 using LangParser.Visitors;
 
 namespace ParseTest
@@ -13,11 +11,12 @@ namespace ParseTest
 		static void Main(string[] args)
 		{
 			string code = @"
-int test(int hallo)
+int test(float hallo)
 {
-	for(int i = 0; !(true ^ 0); i = i + 5)
-		while(5 < 4)
-			print(""Hallo Welt"");
+	for(int i = 0; i < 5; i = i + 9)
+	{
+		if(i == 3) continue;
+	}
 
 	return 5 + 9;
 }

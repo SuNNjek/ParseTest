@@ -92,6 +92,8 @@ namespace LangParser.Lexing
 			matchers.Add(new SpecialMatcher<ObjectToken>("object", false, delimiters));
 			matchers.Add(new SpecialMatcher<ByteToken>("byte", false, delimiters));
 			matchers.Add(new SpecialMatcher<ReturnToken>("return", false, delimiters));
+			matchers.Add(new SpecialMatcher<BreakToken>("break", false, delimiters));
+			matchers.Add(new SpecialMatcher<ContinueToken>("continue", false, delimiters));
 
 			matchers.Add(new WhitespaceMatcher());
 			matchers.Add(new NumberMatcher());

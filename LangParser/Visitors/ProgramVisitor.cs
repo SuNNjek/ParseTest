@@ -19,6 +19,8 @@ namespace LangParser.Visitors
 		, IVisitor<Variable>
 		, IVisitor<VariableDeclaration>
 		, IVisitor<WhileLoop>
+		, IVisitor<Break>
+		, IVisitor<Continue>
 	{
 		public virtual void Start(IVisitable visitable)
 		{
@@ -69,6 +71,12 @@ namespace LangParser.Visitors
 				case WhileLoop whileLoop:
 					Visit(whileLoop);
 					break;
+				case Break brk:
+					Visit(brk);
+					break;
+				case Continue cont:
+					Visit(cont);
+					break;
 
 				default:
 					throw new InvalidOperationException($"Visitor doesn't support visitables of type {visitable.GetType()}");
@@ -90,5 +98,7 @@ namespace LangParser.Visitors
 		public abstract void Visit(ConditionalBranch visitable);
 		public abstract void Visit(BinaryExpression visitable);
 		public abstract void Visit(Program visitable);
+		public abstract void Visit(Continue visitable);
+		public abstract void Visit(Break visitable);
 	}
 }

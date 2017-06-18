@@ -74,4 +74,14 @@
 	{
 		public ReturnToken() : base("return") { }
 	}
+
+	public class BreakToken : Token
+	{
+		public BreakToken() : base("break") { }
+	}
+
+	public class ContinueToken : Token
+	{
+		public ContinueToken() : base("continue") { }
+	}
 }

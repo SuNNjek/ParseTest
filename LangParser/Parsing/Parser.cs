@@ -54,8 +54,36 @@ namespace LangParser.Parsing
 				_tokenStream.Capture(BlockStatement) ??
 				_tokenStream.Capture(IfStatement) ??
 				_tokenStream.Capture(LoopStatement) ??
-				_tokenStream.Capture(ReturnStatement) ??
+				_tokenStream.Capture(JumpStatement) ??
 				throw new InvalidSyntaxException("Expected statement", _tokenStream.Current.Position, null);
+		}
+
+		private Ast JumpStatement()
+		{
+			return
+				_tokenStream.Capture(BreakStatement) ??
+				_tokenStream.Capture(ContinueStatement) ??
+				_tokenStream.Capture(ReturnStatement);
+		}
+
+		private Ast BreakStatement()
+		{
+			if (!_tokenStream.IsMatch<BreakToken>())
+				return null;
+
+			BreakToken token = _tokenStream.Take<BreakToken>();
+			_tokenStream.Take<SemicolonToken>();
+			return new Break(token);
+		}
+
+		private Ast ContinueStatement()
+		{
+			if (!_tokenStream.IsMatch<ContinueToken>())
+				return null;
+
+			ContinueToken token = _tokenStream.Take<ContinueToken>();
+			_tokenStream.Take<SemicolonToken>();
+			return new Continue(token);
 		}
 
 		private Ast ReturnStatement()
